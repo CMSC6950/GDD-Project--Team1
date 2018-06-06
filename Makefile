@@ -3,7 +3,8 @@ plot = ./Plots
 root = ./
 
 download_data: init
-	python $(root)download_data.py input.csv 2013 2017
+	@echo "Downloading files"
+	python $(root)download_data.py input.csv 2014 2017
 
 clean:
 	rm -rf $(plot)
