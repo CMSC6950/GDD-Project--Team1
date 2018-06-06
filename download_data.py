@@ -14,7 +14,9 @@ if(arglen != 4):
 # download station inventory
 stationIDUrl = "ftp://client_climate@ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_donnees/Station%20Inventory%20EN.csv"
 urllib.request.urlretrieve(stationIDUrl,'station_inventory.csv')
-outputFileName = "plot_data.csv"
+
+
+fpath= (os.getcwd()+'/Data/')
 
 # Read the Station IDs in input.csv
 CityIdPair = {}
@@ -23,20 +25,16 @@ CityRows.columns = ['StationID','Cities','Tbase']
 
 StationIDs = np.array(CityRows['StationID'].values.tolist())
 Cities = np.array(CityRows['Cities'].values.tolist())
-	
+
 # Read year range
 years = np.arange(int(sys.argv[2]),int(sys.argv[3]) + 1)
-	
+
 # download the weather data for the station IDs
 downloadUrl="http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=STID&Year=YEAR&timeframe=2&submit=%20Download+Data"
 for station in StationIDs:
 	for year in years:
 		ID = station
 		url = downloadUrl.replace("STID",str(ID)).replace("YEAR",str(year))
-		filename = str(ID) + "-" + str(year) + ".csv"
-		urllib.request.urlretrieve(url,filename)
-
-
-	
-
-
+		filename = fpath + str(ID) + "-" + str(year) + ".csv"
+		with open(filename, 'w') as datafile:
+			urllib.request.urlretrieve(url,filename)
