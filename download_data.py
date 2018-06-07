@@ -16,7 +16,6 @@ stationIDUrl = "ftp://client_climate@ftp.tor.ec.gc.ca/Pub/Get_More_Data_Plus_de_
 urllib.request.urlretrieve(stationIDUrl,'station_inventory.csv')
 
 
-fpath= (os.getcwd()+'/Data/')
 
 # Read the Station IDs in input.csv
 CityIdPair = {}
@@ -31,10 +30,21 @@ years = np.arange(int(sys.argv[2]),int(sys.argv[3]) + 1)
 
 # download the weather data for the station IDs
 downloadUrl="http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=STID&Year=YEAR&timeframe=2&submit=%20Download+Data"
+data_path= (os.getcwd()+'/Data/')
 for station in StationIDs:
 	for year in years:
 		ID = station
 		url = downloadUrl.replace("STID",str(ID)).replace("YEAR",str(year))
-		filename = fpath + str(ID) + "-" + str(year) + ".csv"
+		filename = str(ID) + "-" + str(year) + ".csv"
 		with open(filename, 'w') as datafile:
 			urllib.request.urlretrieve(url,filename)
+		#Getting specific data
+		data_frame = pd.read_csv(filename, usecols=(0,1,2,3,5,7,9),header=None, skiprows=25, sep=",", encoding="ISO-8859-1")
+		data_frame.columns=['Date/Time','Year','Month','Day','Max_Temp','Min_Temp','Mean_Temp']
+		new_fname =  data_path+filename
+		data_frame.to_csv(new_fname)
+		# removing temporary saved files
+		os.remove(filename)
+#remove station file
+os.remove('station_inventory.csv')		
+print("Files Extracted")
