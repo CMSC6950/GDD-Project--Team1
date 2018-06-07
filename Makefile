@@ -4,7 +4,7 @@ root = ./
 
 download_data: init
 	@echo "Downloading files"
-	python $(root)download_data.py input.csv 2014 2017
+	python3 $(root)download_data.py input.csv 2014 2017
 
 clean:
 	rm -rf $(plot)
