@@ -4,11 +4,7 @@ CITY_NAMES := $(addsuffix .name, $(CITIES))
 CITY_FILE_PATHS := $(addprefix Data/, $(CITY_FILES))
 CITY_NAME_PATHS := $(addprefix Data/, $(CITY_NAMES))
 
-.PHONY: min_max_plot
-min_max_plot: download_data
-	@echo "Plotting min and max values"
-	python3 min_max_plot.py
-
+.PHONY: download_data
 download_dat: init $(CITY_FILE_PATHS) $(CITY_NAME_PATHS)
 
 Data/%.name: input.csv 
