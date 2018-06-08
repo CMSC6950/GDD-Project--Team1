@@ -31,11 +31,14 @@ years = np.arange(int(sys.argv[2]),int(sys.argv[3]) + 1)
 # download the weather data for the station IDs
 downloadUrl="http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=STID&Year=YEAR&timeframe=2&submit=%20Download+Data"
 data_path= (os.getcwd()+'/Data/')
+
+#count to get the name of each citie
+city_index = 0
 for station in StationIDs:
 	for year in years:
 		ID = station
 		url = downloadUrl.replace("STID",str(ID)).replace("YEAR",str(year))
-		filename = str(ID) + "-" + str(year) + ".csv"
+		filename = Cities[city_index] + "-" +str(ID) + "-" + str(year) + ".csv"
 		with open(filename, 'w') as datafile:
 			urllib.request.urlretrieve(url,filename)
 		#Getting specific data
@@ -45,6 +48,8 @@ for station in StationIDs:
 		data_frame.to_csv(new_fname)
 		# removing temporary saved files
 		os.remove(filename)
+		#increment to go through each one
+	city_index += 1
 #remove station file
-os.remove('station_inventory.csv')		
+os.remove('station_inventory.csv')
 print("Files Extracted")
