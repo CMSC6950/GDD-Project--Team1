@@ -1,27 +1,24 @@
--include cities.mak
-CITY_FILES := $(addsuffix .csv, $(CITIES))
-CITY_NAMES := $(addsuffix .name, $(CITIES))
-CITY_FILE_PATHS := $(addprefix Data/, $(CITY_FILES))
-CITY_NAME_PATHS := $(addprefix Data/, $(CITY_NAMES))
+datafile = ./Data
+plot = ./Plots
+root = ./
 
+<<<<<<< HEAD
 .PHONY: download_data
 download_dat: init $(CITY_FILE_PATHS) $(CITY_NAME_PATHS)
+=======
+min_max_plot: download_data
+	@echo "Plotting Mix and Max Values"
+	python3 $(root)min_max_plot.py
+>>>>>>> parent of 83ebeef... A trial update of downloading data
 
-Data/%.name: input.csv 
-	python3 gen_station_name_files.py $< 2012 2013
-
-Data/cities_list.txt: input.csv 
-	python3 gen_station_name_files.py $< 2012 2013
-
-Data/%.csv: Data/%.name download_data.py 
-	python3 download_data.py $<
-
-cities.mak: Data/cities_list.txt 
-	@sed -e ':a' -e 'N' -e '$$!ba' -e 's/\n/ /g' -e 's/^/CITIES := /' $< > $@
+download_data: init
+	@echo "Downloading files"
+	python3 $(root)download_data.py input.csv 2014 2017
 
 clean:
-	rm -f cities.mak Data/*.name Data/*.csv Data/cities_list.txt
+	rm -rf $(plot)
+	rm -rf $(datafile)
 
 init:
-	mkdir -p Data
-	mkdir -p Plots
+	mkdir -p $(datafile)
+	mkdir -p $(plot)
