@@ -1,26 +1,36 @@
 import pandas as pd
 import numpy as np
 import sys
+#import pdb
+
+'''
+This script calculates the cumulative GDD and
+save the results to a csv file.
+'''
 
 if __name__ == "__main__":
     tbase = int(sys.argv[2])
     tupper = int(sys.argv[3])
     infile = sys.argv[1]
     
+#    pdb.set_trace()
+    
     df = pd.read_csv(infile,index_col=0)
     date = df['Date/Time']
     
-    higher_than_upper_index = (df['Max_Temp']>tupper)
-    lower_than_base_index = (df['Min_Temp']<tbase)
-    
-    df.loc[higher_than_upper_index,'Min_Temp'] = tupper
-    df.loc[lower_than_base_index,'Min_Temp'] = tbase
-    
+    df.loc[df['Max_Temp']>tupper,'Max_Temp'] = tupper
+    df.loc[df['Min_Temp']<tbase,'Min_Temp'] = tbase
+    # Calculate daily growing degrees
     gdd = ((df['Max_Temp'] + df['Min_Temp'])/2 - tbase).to_frame()
+    gdd.loc[gdd[0]<0, 0] = 0
+
+    # Compute cumulative GDD and reset index to date
     cumgdd = gdd.cumsum()
     cumgdd.columns = ['Cumulative GDD']
     cumgdd.index = date
     
+    # Save GDD data
     year = df['Year'][0]
-    descrp = 'Cumulative_GDD_' + str(year)
-    cumgdd.to_hdf('Data/' + descrp + '.h5', descrp, format='table', mode='w')
+    prefix = infile.split('.')[0]
+    outfile = prefix + '-CumGDD' + '.csv'
+    cumgdd.to_csv(outfile, sep=',')
