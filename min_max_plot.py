@@ -8,7 +8,6 @@ import pandas as pd
 import csv
 import sys
 import os.path
-import pdb
 
 fig,ax1=plt.subplots()
 fig = plt.figure(figsize=(15,7))
@@ -68,10 +67,7 @@ def get_allfiles():
 #csv data files location
 filepath= (os.getcwd()+'/Data/')
 
-pdb.set_trace()
-
 files = get_allfiles()
 for file in files:
-    if str(file).endswith('.csv'):
-        Data = pd.read_csv(filepath+file, encoding = 'utf-8')
-        min_max_plot(file)
+    Data = pd.read_csv(filepath+file, encoding = 'utf-8')
+    min_max_plot(file)
