@@ -4,7 +4,7 @@ import sys
 #import pdb
 
 '''
-This script calculates the cumulative GDD and
+This script calculates the daily GDD and
 save the results to a csv file.
 '''
 
@@ -24,13 +24,8 @@ if __name__ == "__main__":
     gdd = ((df['Max_Temp'] + df['Min_Temp'])/2 - tbase).to_frame()
     gdd.loc[gdd[0]<0, 0] = 0
 
-    # Compute cumulative GDD and reset index to date
-    cumgdd = gdd.cumsum()
-    cumgdd.columns = ['Cumulative GDD']
-    cumgdd.index = date
-    
     # Save GDD data
     year = df['Year'][0]
     prefix = infile.split('.')[0]
-    outfile = prefix + '-CumGDD' + '.csv'
-    cumgdd.to_csv(outfile, sep=',')
+    outfile = prefix + '-GDD' + '.csv'
+    gdd.to_csv(outfile, sep=',')
