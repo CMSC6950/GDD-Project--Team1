@@ -1,31 +1,14 @@
--include cities.mak
-CITY_FILES := $(addsuffix .csv, $(CITIES))
-CITY_NAMES := $(addsuffix .name, $(CITIES))
-CITY_FILE_PATHS := $(addprefix Data/, $(CITY_FILES))
-CITY_NAME_PATHS := $(addprefix Data/, $(CITY_NAMES))
-
 .PHONY: min_max_plot
 min_max_plot: download_data
 	@echo "Plotting min-max values"
 	python3 min_max_plot.py
 
-download_data: init $(CITY_FILE_PATHS) $(CITY_NAME_PATHS)
+download_data: input.csv init 	
 	@echo "Downloading data"
-
-Data/%.name: input.csv 
-	python3 gen_station_name_files.py $< 2014 2015
-
-Data/cities_list.txt: input.csv 
-	python3 gen_station_name_files.py $< 2014 2015
-
-Data/%.csv: Data/%.name download_data.py 
-	python3 download_data.py $<
-
-cities.mak: Data/cities_list.txt 
-	@sed -e ':a' -e 'N' -e '$$!ba' -e 's/\n/ /g' -e 's/^/CITIES := /' $< > $@
+	python3 download_data.py $< 2016 2017
 
 clean:
-	rm -f cities.mak Data/*.name Data/*.csv Data/cities_list.txt Plots/*
+	rm -f Data/*.csv Plots/*
 
 init:
 	mkdir -p Data
