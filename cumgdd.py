@@ -25,9 +25,9 @@ def cumgdd(infile, tbase, tupper):
     cumgdd.index = date
 
     # Save GDD data
-    year = df['Year'][0]
-    prefix = infile.split('.')[0]
-    outfile = prefix + '_CumGDD' + '.csv'
-    cumgdd.to_csv(outfile, sep=',')
+#    year = df['Year'][0]
+#    prefix = infile.split('.')[0]
+#    outfile = prefix + '_CumGDD' + '.csv'
+#    cumgdd.to_csv(outfile, sep=',')
 
     return cumgdd.iloc[-1,0]

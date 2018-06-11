@@ -8,10 +8,10 @@ from pathlib import Path
 import pdb
 
 def download_data_func(stationID, year):
-    pdb.set_trace()
+#    pdb.set_trace()
 
     # download the weather data for the station ID
-    outfile = 'docs/Data/' + str(stationID) + '_' + str(year) + '.csv'
+    outfile = 'Data/' + str(stationID) + '_' + str(year) + '.csv'
     if not Path(outfile).exists():
         downloadUrl="http://climate.weather.gc.ca/climate_data/bulk_data_e.html?format=csv&stationID=STID&Year=YEAR&timeframe=2&submit=%20Download+Data"
         url = downloadUrl.replace("STID",str(stationID)).replace("YEAR",str(year))
