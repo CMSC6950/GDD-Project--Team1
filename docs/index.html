@@ -1,1 +1,137 @@
-Hi. We are Team !
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width = device-width, initial-scale = 1">
+<title>CMSC6950 Project Presentation</title>
+
+<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+
+<link href='https://fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
+<style type="text/css">
+body {
+  font-size: 62.5%;
+  font-family: arial, sans-serif;
+}
+#nttLogo{
+  height: 100px;
+  width: 100px;
+}
+#websiteTitle{
+  font-size: 10em;
+  vertical-align: middle;
+  font-family: 'Arvo', cursive;
+  padding-left: 15px;
+  color: #191970;
+}
+#websiteSlogan{
+  font-size: 5.4em;
+}
+/* Carousel Styling */
+.slide1{
+  background-image: url('cover.png');
+  height: 500px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.carousel-caption h1{
+  font-size: 5.4em;
+  font-family: 'Pacifico', cursive;
+  padding-bottom: .4em;
+}
+.carousel-caption p{
+  font-size: 3em;
+}
+</style>
+</head>
+<body>
+<!--
+<div class="container">
+  <div class="jumbotron">
+  <img src="ntt-logo.png" id="nttLogo" alt="New Think Tank Logo">
+  <span id="websiteTitle">New Think Tank</span>
+  <p id="websiteSlogan">Video Tutorials on just about Anything</p>
+  </div>
+</div>
+-->
+
+<!-- Carousel -->
+<!-- Surround everything with a div with the class carousel slide -->
+<div id="theCarousel" class="carousel slide" data-ride="carousel">
+
+  <!-- Define how many slides to put in the carousel -->
+  <ol class="carousel-indicators">
+    <li data-target="#theCarousel" data-slide-to="0" class="active"> </li >
+  </ol >
+
+  <!-- Define the text to place over the image -->
+  <div class="carousel-inner">
+    <div class="item active" >
+    <div class ="slide1"></div>
+    <div class="carousel-caption">
+      <h1>CMSC6950 Project Presentation</h1>
+      <p>Team Member:</p>
+      <p><a href="#" class="btn btn-primary btn-lg">Start</a></p>
+    </div>
+  </div>
+  </div><br>
+
+  <!-- Set the actions to take when the arrows are clicked 
+  <a class="left carousel-control" href="#theCarousel" data-slide="prev">
+  <span class="glyphicon glyphicon-chevron-left"> </span>
+  </a>
+  <a class="right carousel-control" href="#theCarousel" data-slide="next">
+  <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+  </div>
+  -->
+
+  <div class="container">
+<div class="row">
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="jumbotron">
+      <h4>Overall Workflow</h4>
+      This part will demonstral our basic workflow in this project. When click on the title, open a new page to this part.
+   </div>
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+    <div class="jumbotron">
+
+    <div class="clearfix visible-sm"></div>
+
+      <h4>Accumulated GDD Plots</h4>
+      This part will demonstrate the accumulated gdd plots for several selected cities. Click on the title to see the contents.
+    </div>
+    </div>
+
+    <div class="clearfix visible-sm"></div>
+ 
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="jumbotron">
+      <h4>GDD Map for Canada and Newfoundland</h4>
+      This part will show the gdd distribution for both all of Canada and only for the cities of Newfoundland. Click the title to get into the demonstration.
+    </div>
+    </div>
+
+    <div class="clearfix visible-sm"></div>
+
+    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+      <div class="jumbotron">
+      <h4>Bokeh Sever Plots</h4>
+      This part gives a bokeh server plot to look at the accumulated GDD for any city in Canada interactively. Click title to see.
+    </div>
+    </div>
+  </div>
+  </div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+<!-- Use downloaded version of Bootstrap -->
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
+
