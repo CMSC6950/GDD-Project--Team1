@@ -8,11 +8,7 @@ This script calculates the cumulative GDD and
 save the results to a csv file.
 '''
 
-if __name__ == "__main__":
-    tbase = int(sys.argv[2])
-    tupper = int(sys.argv[3])
-    infile = sys.argv[1]
-    
+def cumgdd(infile, tbase, tupper):
 #    pdb.set_trace()
     
     df = pd.read_csv(infile,index_col=0)
@@ -33,3 +29,5 @@ if __name__ == "__main__":
     prefix = infile.split('.')[0]
     outfile = prefix + '_CumGDD' + '.csv'
     cumgdd.to_csv(outfile, sep=',')
+
+    return cumgdd.iloc[-1,0]
