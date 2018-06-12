@@ -20,7 +20,6 @@ def download_data_func(stationID, year):
         # Process the downloaded data
         df = pd.read_csv(outfile, usecols=(0,1,2,3,5,7,9),header=None,skiprows=25,sep=',',encoding="ISO-8859-1")
         df.columns = ['Date/Time','Year','Month','Day','Max_Temp','Min_Temp','Mean_Temp']
-        df.replace('',np.nan,inplace=True)
         df.dropna()
         df.to_csv(outfile)
         print('Successfully downloaded data at station {0}'.format(stationID))
