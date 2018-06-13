@@ -27,10 +27,9 @@ NL_stations = NL_inventory_df['Station ID'].tolist()
 cumulative_gdd_list = []
 
 # Download temparature data files for all cities in the list 
-print("Downloading and processing data")
 for station in NL_stations:
     download_data_func(station, year)
-    infile = 'Data/' + str(station) + '_' + str(year) + '.csv'
+    infile = 'docs/data/' + str(station) + '_' + str(year) + '.csv'
     cumulative_gdd_list.append(cumgdd(infile, tbase, tupper))
     
 # Add a column of cumulative gdd values
@@ -54,5 +53,5 @@ ax.clabel(c, inline=1, fontsize=15)
 ax.tricontourf(lons, lats, cgdd)
 ax.scatter(lons, lats, marker='o', color='k', s=70, transform=ccrs.PlateCarree(),alpha=0.6)
 plt.title("Effective growing degree days of Newfoundland in 2015", fontsize=20)
-plt.savefig("Plots/GDD_Map_NL.png")
+plt.savefig("docs/plots/GDD_Map_NL.png")
 

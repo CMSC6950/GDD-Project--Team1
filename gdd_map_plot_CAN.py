@@ -28,7 +28,7 @@ cumulative_gdd_list = []
 for station in all_stations:
 #    pdb.set_trace()
     download_data_func(station, year)
-    infile = 'Data/' + str(station) + '_' + str(year) + '.csv'
+    infile = 'docs/data/' + str(station) + '_' + str(year) + '.csv'
     cumulative_gdd_list.append(cumgdd(infile, tbase, tupper))
     
 # Add a column of cumulative gdd values
@@ -48,7 +48,7 @@ ax.coastlines('10m')
 ax.scatter(lons, lats, marker='o', c=cgdd, s=cgdd, transform=ccrs.PlateCarree(), alpha=0.5)
 ax.set_extent([-145,-50,40,70])
 plt.title("Effective growing degree days of Canada in 2016", fontsize=20)
-plt.savefig("Plots/GDD_Map_CAN_scatter.png")
+plt.savefig("docs/plots/GDD_Map_CAN_scatter.png")
 
 # Contour Plt
 ax = plt.axes(projection=ccrs.PlateCarree())
@@ -59,4 +59,4 @@ ax.tricontourf(lons, lats, cgdd)
 ax.scatter(lons, lats, marker='o', color='k', s=10, transform=ccrs.PlateCarree(), alpha=0.5)
 ax.set_extent([-145,-50,40,70])
 plt.title("Effective growing degree days of Canada in 2016", fontsize=20)
-plt.savefig("Plots/GDD_Map_CAN_contour.png")
+plt.savefig("docs/plots/GDD_Map_CAN_contour.png")

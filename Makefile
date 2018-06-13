@@ -12,8 +12,7 @@ bokehplot: gdd
 	python3 bokehplot.py
 
 clean:
-	rm -f Data/*.csv Plots/*
+	rm -f Data/*.csv Plots/* docs/plots/*
 
 init:
-	mkdir -p Data
-	mkdir -p Plots
+	mkdir -p Data Plots docs/data docs/plots
