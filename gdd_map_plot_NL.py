@@ -13,7 +13,7 @@ from download_data_func import download_data_func
 
 tbase = 10
 tupper = 30
-year = 2016
+year = 2015
 
 # Get station list from station inventory which exists from the previous download step
 station_inventory = "station_inventory.csv"
@@ -27,6 +27,7 @@ NL_stations = NL_inventory_df['Station ID'].tolist()
 cumulative_gdd_list = []
 
 # Download temparature data files for all cities in the list 
+print("Downloading and processing data")
 for station in NL_stations:
     download_data_func(station, year)
     infile = 'Data/' + str(station) + '_' + str(year) + '.csv'
@@ -34,10 +35,24 @@ for station in NL_stations:
     
 # Add a column of cumulative gdd values
 NL_inventory_df.insert(loc=4, column='Cumulative GDD', value=cumulative_gdd_list)
-#NL_inventory_df.to_csv('inventory_df.csv')
-
-
+NL_inventory_df = NL_inventory_df.dropna(subset=["Cumulative GDD"])
 
 
 # Plot gdd map with the above data
+fig = plt.figure(figsize=(15,20))
+ax = plt.axes(projection=ccrs.PlateCarree())
+
+# Choose latitude > 51.6
+NL_inventory_df = NL_inventory_df[NL_inventory_df["Latitude (Decimal Degrees)"]<51.6]
+lats = np.array(NL_inventory_df['Latitude (Decimal Degrees)'].tolist())
+lons = np.array(NL_inventory_df['Longitude (Decimal Degrees)'].tolist())
+cgdd = np.array(NL_inventory_df["Cumulative GDD"].tolist())
+
+ax.coastlines('10m')
+c = ax.tricontour(lons, lats, cgdd)
+ax.clabel(c, inline=1, fontsize=15)
+ax.tricontourf(lons, lats, cgdd)
+ax.scatter(lons, lats, marker='o', color='k', s=70, transform=ccrs.PlateCarree(),alpha=0.6)
+plt.title("Effective growing degree days of Newfoundland in 2015", fontsize=20)
+plt.savefig("Plots/GDD_Map_NL.png")
 

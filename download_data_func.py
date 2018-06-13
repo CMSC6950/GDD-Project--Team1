@@ -22,6 +22,5 @@ def download_data_func(stationID, year):
         df.columns = ['Date/Time','Year','Month','Day','Max_Temp','Min_Temp','Mean_Temp']
         df.dropna()
         df.to_csv(outfile)
-        print('Successfully downloaded data at station {0}'.format(stationID))
     return
 
