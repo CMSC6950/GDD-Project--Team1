@@ -36,6 +36,8 @@ def gddCal(maxTemp,minTemp,tbase,tupper):
 	print('Running Test for GDD calculation')
 	if maxTemp > tupper:
 		maxTemp = tupper
+	if minTemp < tbase:
+		minTemp = tbase
 	gdd = (maxTemp + minTemp)/2 - tbase
 	if gdd < 0:
 		return 0
