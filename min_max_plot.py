@@ -71,8 +71,6 @@ def get_allfiles():
 #csv data files location
 filepath= (os.getcwd()+'/Data/')
 
-#pdb.set_trace()
-
 files = get_allfiles()
 for file in files:
     if str(file).endswith('.csv'):
