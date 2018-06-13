@@ -30,4 +30,18 @@ if __name__ == "__main__":
     year = df['Year'][0]
     prefix = infile.split('.')[0]
     outfile = prefix + '-GDD' + '.csv'
-    gdd.to_csv(outfile, sep=',',index=False)
+    gdd.to_csv(outfile, sep=',')
+
+
+# used only by the test suite(pytest)
+def gddCal(maxTemp,minTemp,tbase,tupper):
+	print('Running Test for GDD calculation')
+	if maxTemp > tupper:
+		maxTemp = tupper
+	if minTemp < tbase:
+		minTemp = tbase
+	gdd = (maxTemp + minTemp)/2 - tbase
+	if gdd < 0:
+		return 0
+	else:
+		return gdd
