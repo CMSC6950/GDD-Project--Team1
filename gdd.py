@@ -29,3 +29,16 @@ if __name__ == "__main__":
     prefix = infile.split('.')[0]
     outfile = prefix + '-GDD' + '.csv'
     gdd.to_csv(outfile, sep=',')
+
+	
+# used only by the test suite(pytest)
+def gddCal(maxTemp,minTemp,tbase,tupper):
+	print('Running Test for GDD calculation')
+	if maxTemp > tupper:
+		maxTemp = tupper
+	gdd = (maxTemp + minTemp)/2 - tbase
+	if gdd < 0:
+		return 0
+	else:
+		return gdd
+	
