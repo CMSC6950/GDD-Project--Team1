@@ -10,7 +10,7 @@ save the results to a csv file.
 
 def cumgdd(infile, tbase, tupper):
 #    pdb.set_trace()
-    
+   
     df = pd.read_csv(infile,index_col=0)
     date = df['Date/Time']
     
