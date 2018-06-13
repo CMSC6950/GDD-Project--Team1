@@ -30,4 +30,4 @@ if __name__ == "__main__":
     year = df['Year'][0]
     prefix = infile.split('.')[0]
     outfile = prefix + '-GDD' + '.csv'
-    gdd.to_csv(outfile, sep=',')
+    gdd.to_csv(outfile, sep=',',index=False)
