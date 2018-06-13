@@ -7,6 +7,10 @@ download_data: input.csv init
 	@echo "Downloading data"
 	python3 download_data.py $< 2016 2017
 
+bokehplot: gdd
+	@echo "Creating Bokeh Plots"
+	python3 bokehplot.py
+
 clean:
 	rm -f Data/*.csv Plots/*
 
