@@ -73,6 +73,6 @@ filepath= (os.getcwd()+'/Data/')
 
 files = get_allfiles()
 for file in files:
-    if str(file).endswith('.csv'):
+    if str(file).endswith('.csv') and not file.endswith('GDD.csv'):
         Data = pd.read_csv(filepath+file, encoding = 'utf-8')
         min_max_plot(file)

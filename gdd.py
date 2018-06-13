@@ -23,14 +23,18 @@ if __name__ == "__main__":
 
     # Calculate daily growing degrees
     gdd = ((df['Max_Temp'] + df['Min_Temp'])/2 - tbase).to_frame()
-    gdd['Data/Time'] = df['Date/Time']
     gdd.loc[gdd[0]<0, 0] = 0
+    gdd.columns = ["Daily GDD"]
+    gdd.index = date
 
     # Save GDD data
     year = df['Year'][0]
     prefix = infile.split('.')[0]
-    outfile = prefix + '-GDD' + '.csv'
-    gdd.to_csv(outfile, sep=',',index=False)
+    if tbase != 10:
+        outfile = prefix + '_base_' + str(tbase) + ' _GDD' + '.csv'
+    else:
+        outfile = prefix + '_GDD' + '.csv'
+    gdd.to_csv(outfile, sep=',')
 
 
 # used only by the test suite(pytest)
