@@ -2,7 +2,7 @@ start_year=2016
 end_year=2017
 
 .PHONY: all
-all: gdd_map_plot,gdd_accumulated bokehplot gen_gdd min_max_plot linearReg
+all: gdd_map_plot gdd_accumulated bokehplot gen_gdd min_max_plot linearReg
 	@echo "Starting workflow"
 
 linearReg: min_max_plot
@@ -38,11 +38,11 @@ gdd_map_plot: init
 	python3 gdd_map_plot_NL.py
 	python3 gdd_map_plot_CAN.py
 
-#gen_latex: docs/project_report.tex gdd_acccumulated bokehplot gdd_map_plot min_max_plot
-#	latexmk -pdf $<
+gen_latex: project_report.tex gdd_acccumulated bokehplot gdd_map_plot min_max_plot
+	latexmk -pdf $<
 
 clean:
-	rm -rf Data/*.csv Plots/* GDDFiles* docs/plots/*
+	rm -rf Data/*.csv Plots/* GDDFiles* docs/plots/* station_inventory.csv
 
 init:
 	mkdir -p Data Plots docs/data docs/plots
