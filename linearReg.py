@@ -3,6 +3,7 @@ import pandas as pd
 import time as time
 import math
 import os
+import sys
 import csv
 import matplotlib.pyplot as plt
 import itertools
@@ -15,7 +16,7 @@ filepath = (os.getcwd()+'/Data/')
 
 
 def get_gdd_files(filepath,start=2016,end=2017):
-    """This function gets gdd files from the Data/ directory"""
+    """This function gets gdd files from the Data/ directory and appends them to a new file containing a station gdds"""
     station_name_id = ""
     list_years = list(range(int(start),int(end)+1))
     files = os.listdir(filepath)
@@ -53,12 +54,13 @@ def gddPlot_linearReg(station_id_name,start=2016,end=2017):
         GDD_mean.append(np.mean(instance['DailyGDD']))
     (m,b) = np.polyfit(list_years,GDD_mean,1)
     yp = np.polyval([m,b],list_years)
-    plt.scatter(list_years, GDD_mean,color= next(colors), label = "Accumalated GDD mean in "+station_id_name)
+    plt.scatter(list_years, GDD_mean,color= next(colors), label = "Acc GDD mean "+station_id_name)
     plt.plot(list_years,yp)
     plt.legend(loc='upper left')
     fig.savefig(plotpath+'/GDD_LinearRegression_'+station_id_name+'.png')
 
-    start = int(sys.argv[1])
-    end = int(sys.argv[2])
-    get_gdd_files(filepath,start,end)
-    gddPlot_linearReg('49568',start,end)
+start = int(sys.argv[1])
+end = int(sys.argv[2])
+get_gdd_files(filepath,start,end)
+#testing just for one station for now
+gddPlot_linearReg('49568',start,end)
