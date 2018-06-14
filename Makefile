@@ -2,7 +2,7 @@ start_year=2016
 end_year=2017
 
 .PHONY: min_max_plot
-min_max_plot: download_data gen_gdd
+min_max_plot: download_data gen_gdd bokehplot
 	@echo "Plotting min-max values"
 	python3 min_max_plot.py
 
@@ -18,11 +18,14 @@ download_data: input.csv init
 	@echo "Downloading data"
 	python3 download_data.py $< $(start_year) $(end_year) 
 
-
 gdd_map_plot: 
 	@echo "Ploting GDD map"
 	python3 gdd_map_plot_NL.py
 	python3 gdd_map_plot_CAN.py
+
+bokehplot: 
+	@echo "Creating bokehplot"
+	python3 bokehplot.py
 
 #gen_latex: report.tex Plots/* docs/plots/*
 #	latexmk $< 
