@@ -2,7 +2,7 @@ start_year=2016
 end_year=2017
 
 .PHONY: all
-all: gdd_map_plot gdd_accumulated bokehplot gen_gdd min_max_plot
+all: gdd_map_plot,gdd_accumulated bokehplot gen_gdd min_max_plot linearReg
 	@echo "Starting workflow"
 
 linearReg: min_max_plot
