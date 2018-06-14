@@ -2,12 +2,16 @@ start_year=2016
 end_year=2017
 
 .PHONY: all
-all: gdd_map_plot gdd_accumulated bokehplot gen_gdd min_max_plot
+all: gdd_map_plot gdd_accumulated bokehplot gen_gdd linearReg min_max_plot
 	@echo "Starting workflow"
  
 min_max_plot: download_data gen_gdd gdd_accumulated
 	@echo "Plotting min-max values"
 	python3 min_max_plot.py
+
+linearReg: min_max_plot
+	@echo "Plottingn linear regression"
+	python3 linearReg.py $(start_year) $(end_year)
 
 gen_gdd: download_data 
 	@echo "Computing GDD with base 10"
