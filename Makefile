@@ -32,7 +32,7 @@ gdd_map_plot:
 #	latexmk $< 
 
 clean:
-	rm -f Data/*.csv Plots/* GDDFiles* docs/plots/*
+	rm -rf Data/*.csv Plots/* GDDFiles* docs/plots/*
 
 init:
-	mkdir -p Data Plots GDDFiles docs/data docs/plots
+	mkdir -p Data Plots docs/data docs/plots
