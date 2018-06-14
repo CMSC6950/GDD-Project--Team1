@@ -58,7 +58,7 @@ def min_max_plot(filename,filepath= (os.getcwd()+'/Data/'),plot_dir = (os.getcwd
     f_name = os.path.basename(filename[:-4])
 
     outfile = plot_dir + f_name + "_minmax.png"
-    print("Plot min_max output file : " + plot_dir + f_name + "_minmax.png")
+#    print("Plot min_max output file : " + plot_dir + f_name + "_minmax.png")
 
     #save plot
     plt.savefig(outfile, format = "png")
