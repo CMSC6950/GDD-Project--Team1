@@ -33,7 +33,7 @@ bokehplot: gen_gdd
 	python3 bokehplot.py
 
 
-gdd_map_plot: init
+gdd_map_plot: init download_data
 	@echo "Ploting GDD map"
 	python3 gdd_map_plot_NL.py
 	python3 gdd_map_plot_CAN.py
