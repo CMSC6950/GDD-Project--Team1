@@ -30,10 +30,7 @@ if __name__ == "__main__":
     # Save GDD data
     year = df['Year'][0]
     prefix = infile.split('.')[0]
-    if tbase != 10:
-        outfile = prefix + '_base_' + str(tbase) + ' _GDD' + '.csv'
-    else:
-        outfile = prefix + '_GDD' + '.csv'
+    outfile = prefix + '_base_' + str(tbase) + '_GDD' + '.csv'
     gdd.to_csv(outfile, sep=',')
 
 
