@@ -4,9 +4,9 @@ from bokeh.io import output_file, save, show
 from bokeh.plotting import figure
 
 
-halifaxIntl = pd.read_csv("Data/50620-2015-GDD.csv", header=None)
-ottawaIntl = pd.read_csv("Data/50430-2015-GDD.csv", header=None)
-calgaryIntl = pd.read_csv("Data/49568-2015-GDD.csv", header=None)
+halifaxIntl = pd.read_csv("Data/50620-2016_base_10_GDD.csv", header=None)
+ottawaIntl = pd.read_csv("Data/50430-2016_base_10_GDD.csv", header=None)
+calgaryIntl = pd.read_csv("Data/49568-2016_base_10_GDD.csv", header=None)
 
 gddOttawa =ottawaIntl.iloc[:][1].tolist()
 gddCalgary =calgaryIntl.iloc[:][1].tolist()
