@@ -2,11 +2,12 @@ import pandas as pd
 from bokeh.layouts import gridplot, column
 from bokeh.io import output_file, save, show
 from bokeh.plotting import figure
+import os
 
-
-halifaxIntl = pd.read_csv("Data/50620-2016-GDD.csv", header=None)
-ottawaIntl = pd.read_csv("Data/50430-2016-GDD.csv", header=None)
-calgaryIntl = pd.read_csv("Data/49568-2016-GDD.csv", header=None)
+path = os.getcwd()
+halifaxIntl = pd.read_csv(path+"/Data/50620-2016_base_10_GDD.csv", header=None)
+ottawaIntl = pd.read_csv(path+"/Data/50430-2016_base_10_GDD.csv", header=None)
+calgaryIntl = pd.read_csv(path+"/Data/49568-2016_base_10_GDD.csv", header=None)
 
 gddOttawa =ottawaIntl.iloc[:][1].tolist()
 gddCalgary =calgaryIntl.iloc[:][1].tolist()
