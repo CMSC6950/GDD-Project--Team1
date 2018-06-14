@@ -15,7 +15,7 @@ if len(sys.argv) != 4:
 
 infile = sys.argv[1]
 cityRows = pd.read_csv(infile, skiprows=1, header=None, sep=',')
-cityRows.columns = ['StationID', 'City', 'Tbase']
+cityRows.columns = ['StationID', 'City', 'Tbase','Tupper']
 
 stationIDs = np.array(cityRows['StationID'].values.tolist())
 cities = np.array(cityRows['City'].values.tolist())
