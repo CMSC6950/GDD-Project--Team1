@@ -3,6 +3,8 @@ import numpy as np
 import cartopy.crs as ccrs
 import sys
 import os
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 #import pdb
 

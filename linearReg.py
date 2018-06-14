@@ -5,6 +5,8 @@ import math
 import os
 import sys
 import csv
+import matplotlib
+matplotlib.use('agg')
 import matplotlib.pyplot as plt
 import itertools
 
